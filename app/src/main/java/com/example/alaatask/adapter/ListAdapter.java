@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.alaatask.R;
+import com.example.alaatask.data.model.Sets;
 import com.example.alaatask.databinding.ListItemBinding;
 import com.example.alaatask.viewmodel.ListFragmentViewModel;
 
@@ -18,6 +19,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ItemHolder> {
 
     private ListFragmentViewModel mViewModel;
     private LifecycleOwner mOwner;
+    private List<Sets> mSetsList;
 
     public ListAdapter(ListFragmentViewModel viewModel, LifecycleOwner owner ) {
         mViewModel = viewModel;
@@ -63,5 +65,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ItemHolder> {
             mItemListBinding.setPosition(position);
             mItemListBinding.executePendingBindings();
         }
+
     }
 }

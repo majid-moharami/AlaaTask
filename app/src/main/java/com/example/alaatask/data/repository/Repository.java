@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.alaatask.data.database.dao.SetsItemDao;
 import com.example.alaatask.data.database.database.SetDatabase;
-import com.example.alaatask.data.database.entity.Set;
+import com.example.alaatask.data.model.Sets;
 
 import java.util.List;
 
@@ -27,26 +27,26 @@ public class Repository {
         mDao = setDatabase.getSetDAO();
     }
 
-    public LiveData<List<Set>> getSetsLiveData(){
+    public LiveData<List<Sets>> getSetsLiveData(){
         return mDao.getSets();
     }
 
-    public LiveData<Set> getSetLiveData(String title){
+    public LiveData<Sets> getSetLiveData(String title){
         return mDao.getSet(title);
     }
 
-    public void  insertSet(Set set){
+    public void  insertSet(Sets set){
         SetDatabase.dataBaseWriteExecutor.execute(() -> mDao.insertSet(set));
     }
 
-    public void insetSets(List<Set> sets){
-        SetDatabase.dataBaseWriteExecutor.execute(() -> mDao.insertSet(sets.toArray(new Set[]{})));
+    public void insetSets(List<Sets> sets){
+        SetDatabase.dataBaseWriteExecutor.execute(() -> mDao.insertSet(sets.toArray(new Sets[]{})));
     }
-    public void updateCrime(Set set) {
-        SetDatabase.dataBaseWriteExecutor.execute(() -> mDao.updateSet(set));
+    public void updateCrime(Sets sets) {
+        SetDatabase.dataBaseWriteExecutor.execute(() -> mDao.updateSet(sets));
     }
 
-    public void deleteCrime(Set set) {
+    public void deleteCrime(Sets set) {
         SetDatabase.dataBaseWriteExecutor.execute(() -> mDao.deleteSet(set));
     }
 

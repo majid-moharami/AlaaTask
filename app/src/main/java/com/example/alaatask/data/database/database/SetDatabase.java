@@ -7,13 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.alaatask.data.database.dao.SetsItemDao;
-import com.example.alaatask.data.database.entity.Set;
+import com.example.alaatask.data.model.Sets;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(
-        entities = {Set.class},
+        entities = {Sets.class},
         version = 1,
         exportSchema = false)
 public abstract class SetDatabase extends RoomDatabase {

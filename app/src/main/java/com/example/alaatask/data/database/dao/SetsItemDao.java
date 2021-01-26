@@ -8,24 +8,24 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.alaatask.data.database.entity.Set;
+import com.example.alaatask.data.model.Sets;
 
 import java.util.List;
 
 @Dao
 public interface SetsItemDao {
-    @Insert
-    void insertSet(Set... sets);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertSet(Sets... sets);
 
     @Update
-    void updateSet(Set... sets);
+    void updateSet(Sets... sets);
 
     @Delete
-    void deleteSet(Set... sets);
+    void deleteSet(Sets... sets);
 
     @Query("select * from set_table")
-    LiveData<List<Set>> getSets();
+    LiveData<List<Sets>> getSets();
 
     @Query("select * from SET_TABLE where title = :titles")
-    LiveData<Set> getSet(String titles);
+    LiveData<Sets> getSet(String titles);
 }

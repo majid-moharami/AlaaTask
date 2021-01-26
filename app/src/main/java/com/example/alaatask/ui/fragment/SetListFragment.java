@@ -32,7 +32,7 @@ public class SetListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(ListFragmentViewModel.class);
-        mAdapter = new ListAdapter(mViewModel,this);
+        mAdapter = new ListAdapter(mViewModel, this);
         registerObserver();
     }
 
@@ -41,14 +41,22 @@ public class SetListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_list, container, false);
-        mBinding.recycler.setLayoutManager(new GridLayoutManager(getContext() , 1 ));
+        mBinding.recycler.setLayoutManager(new GridLayoutManager(getContext(), 1));
         mBinding.recycler.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
 
     private void registerObserver() {
         mViewModel.getSetsMutableLiveData().observe(this, sets -> {
-            mAdapter.notifyDataSetChanged();
+//            mBinding.recycler.post(new Runnable() {
+//                @Override
+//                public void run() {
+                    mAdapter.notifyDataSetChanged();
+//                }
+//            });
+        });
+        mViewModel.getDatabaseSets().observe(this , sets -> {
+            mViewModel.setValueLiveData(sets);
         });
     }
 }

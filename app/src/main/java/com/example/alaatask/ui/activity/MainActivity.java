@@ -9,8 +9,6 @@ import android.os.Bundle;
 
 import com.example.alaatask.R;
 import com.example.alaatask.databinding.ActivityMainBinding;
-import com.example.alaatask.databinding.ActivityMainBindingImpl;
-import com.example.alaatask.databinding.FragmentSetListBindingImpl;
 import com.example.alaatask.ui.fragment.SetListFragment;
 
 public class MainActivity extends AppCompatActivity {
