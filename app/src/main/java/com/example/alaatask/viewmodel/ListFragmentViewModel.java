@@ -47,7 +47,7 @@ public class ListFragmentViewModel extends AndroidViewModel {
                     List<Sets> setsList = new ArrayList<>();
                     List<DataItem> dataItems = response.body().getData();
                     for (int i = 0; i < dataItems.size(); i++) {
-                        if ( dataItems.get(i).getSets() != null || dataItems.get(i).getSets().size() != 0){
+                        if ( dataItems.get(i).getSets() != null ){
                             setsList.addAll(dataItems.get(i).getSets());
                         }
                     }
@@ -60,6 +60,10 @@ public class ListFragmentViewModel extends AndroidViewModel {
                 Log.d("MAJID","NotSuccessful",t);
             }
         });
+    }
+
+    public Sets getSets(int position){
+        return mSetsMutableLiveData.getValue().get(position);
     }
 
     public MutableLiveData<List<Sets>> getSetsMutableLiveData() {

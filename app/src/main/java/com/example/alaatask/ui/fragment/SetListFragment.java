@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.alaatask.R;
+import com.example.alaatask.adapter.ListAdapter;
 import com.example.alaatask.databinding.FragmentSetListBinding;
 import com.example.alaatask.viewmodel.ListFragmentViewModel;
 
@@ -17,6 +19,7 @@ import com.example.alaatask.viewmodel.ListFragmentViewModel;
 public class SetListFragment extends Fragment {
     private FragmentSetListBinding mBinding;
     private ListFragmentViewModel mViewModel;
+    private ListAdapter mAdapter;
 
     public static SetListFragment newInstance() {
         SetListFragment fragment = new SetListFragment();
@@ -29,6 +32,7 @@ public class SetListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(ListFragmentViewModel.class);
+        mAdapter = new ListAdapter(mViewModel,this);
         registerObserver();
     }
 
@@ -37,13 +41,14 @@ public class SetListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_list, container, false);
-
+        mBinding.recycler.setLayoutManager(new GridLayoutManager(getContext() , 1 ));
+        mBinding.recycler.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
 
     private void registerObserver() {
         mViewModel.getSetsMutableLiveData().observe(this, sets -> {
-
+            mAdapter.notifyDataSetChanged();
         });
     }
 }
