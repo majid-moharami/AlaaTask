@@ -52,12 +52,7 @@ public class SetListFragment extends Fragment {
 
     private void registerObserver() {
         mViewModel.getSetsMutableLiveData().observe(this, sets -> {
-//            mBinding.recycler.post(new Runnable() {
-//                @Override
-//                public void run() {
                     mAdapter.notifyDataSetChanged();
-//                }
-//            });
         });
         mViewModel.getDatabaseSets().observe(this , sets -> {
             mViewModel.setValueLiveData(sets);

@@ -19,7 +19,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ItemHolder> {
 
     private ListFragmentViewModel mViewModel;
     private LifecycleOwner mOwner;
-    private List<Sets> mSetsList;
+
 
     public ListAdapter(ListFragmentViewModel viewModel, LifecycleOwner owner ) {
         mViewModel = viewModel;
