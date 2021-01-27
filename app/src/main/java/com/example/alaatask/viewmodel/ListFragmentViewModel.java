@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -31,11 +32,12 @@ public class ListFragmentViewModel extends AndroidViewModel {
     private AlaaTvApi mTvApi;
     private MutableLiveData<List<Sets>> mSetsMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<List<Sets>> mSetsMutableLiveDataOffline = new MutableLiveData<>();
-    private Repository mRepository = Repository.getInstance(getApplication());
+    private Repository mRepository;
 
-    @Inject
+    @ViewModelInject
     public ListFragmentViewModel(@NonNull Application application) {
         super(application);
+        mRepository = Repository.getInstance(getApplication());
         requestForData();
     }
 

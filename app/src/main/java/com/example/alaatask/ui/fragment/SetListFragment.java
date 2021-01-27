@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -15,7 +16,9 @@ import com.example.alaatask.adapter.ListAdapter;
 import com.example.alaatask.databinding.FragmentSetListBinding;
 import com.example.alaatask.viewmodel.ListFragmentViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class SetListFragment extends Fragment {
     private FragmentSetListBinding mBinding;
     private ListFragmentViewModel mViewModel;
@@ -32,6 +35,7 @@ public class SetListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(ListFragmentViewModel.class);
+        Toast.makeText(getContext(), "ViewModel created", Toast.LENGTH_LONG).show();
         mAdapter = new ListAdapter(mViewModel, this);
         registerObserver();
     }
